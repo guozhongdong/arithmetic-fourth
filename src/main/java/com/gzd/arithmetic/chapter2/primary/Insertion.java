@@ -2,14 +2,22 @@ package com.gzd.arithmetic.chapter2.primary;
 
 /**
  * @author gzd
- * @date 2020/7/18 下午3:50
+ * @date 2020/7/18 下午4:34
  *
- * 排序算法的测试框架
+ * 插入排序，对标选择排序，这个算法在效率上有所提高，选择是对有序序列排序时，时间还是平方级
+ * 插入排序对有序序列排序时 是常数级
  */
-public class Example {
+public class Insertion {
 
     public static void sort(Comparable[] a){
+        int N = a.length;
+        for (int i = 0; i < N ; i++) {
 
+            for (int j = i;j>0 && less(a[j],a[j-1])  ; j--) {
+
+                exch(a,j,j-1);
+            }
+        }
 
     }
 
@@ -41,9 +49,8 @@ public class Example {
         return true;
     }
 
-
     public static void main(String[] args) {
-        String[] a = {"bed","bug","dad","yes","zoo"};
+        String[] a = {"myh","bed","bug","dad","yes","zoo"};
         sort(a);
         assert isSorted(a);
         show(a);

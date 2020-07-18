@@ -2,13 +2,28 @@ package com.gzd.arithmetic.chapter2.primary;
 
 /**
  * @author gzd
- * @date 2020/7/18 下午3:50
+ * @date 2020/7/18 下午5:35
  *
- * 排序算法的测试框架
+ * 希尔排序，改进了插入排序，排序的时间达不到平方级
  */
-public class Example {
+public class Shell {
 
     public static void sort(Comparable[] a){
+        int N = a.length;
+        // 这个h很重，是一个递增因子
+        int h =1;
+        while (h < N/3) {
+            h = 3*h + 1;
+        }
+        //最终排序的时候，在递减回来
+        while (h >= 1){
+            for (int i = h; i < N; i++) {
+                for (int j = i; j >= h && less(a[j],a[j-h]) ; j-=h) {
+                    exch(a,j,j-h);
+                }
+            }
+            h = h/3;
+        }
 
 
     }
@@ -41,9 +56,8 @@ public class Example {
         return true;
     }
 
-
     public static void main(String[] args) {
-        String[] a = {"bed","bug","dad","yes","zoo"};
+        String[] a = {"s","h","e","l","l","s","o","r","t","e","x","a","m","p","l","e"};
         sort(a);
         assert isSorted(a);
         show(a);

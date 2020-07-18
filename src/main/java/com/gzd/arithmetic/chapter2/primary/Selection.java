@@ -2,14 +2,26 @@ package com.gzd.arithmetic.chapter2.primary;
 
 /**
  * @author gzd
- * @date 2020/7/18 下午3:50
- *
- * 排序算法的测试框架
+ * @date 2020/7/18 下午4:18
+ * 选择排序
+ * 1、运行时间和输入无关
+ * 2、数据的移动是最少的，
  */
-public class Example {
+public class Selection {
+
 
     public static void sort(Comparable[] a){
+        int N = a.length;
+        for (int i = 0; i < N ; i++) {
 
+            int min = i;
+            for (int j = i+1; j < N; j++) {
+                if (less(a[j], a[min])){
+                    min = j;
+                }
+                exch(a,i,min);
+            }
+        }
 
     }
 
@@ -41,11 +53,11 @@ public class Example {
         return true;
     }
 
-
     public static void main(String[] args) {
-        String[] a = {"bed","bug","dad","yes","zoo"};
+        String[] a = {"myh","bed","bug","dad","yes","zoo"};
         sort(a);
         assert isSorted(a);
         show(a);
     }
+
 }
